@@ -80,12 +80,12 @@
             </div>
             <div class="sminputs">
               <div class="input string optional">
-                <label class="string optional" for="user-pw">Password *</label>
-                <input class="string optional" maxlength="255" id="user-pw" name="userPw" placeholder="Password" type="text" size="50" />
+                <label class="string optional" for="user-pw">Password*</label>
+                <input class="string optional" maxlength="255" id="user-pw" name="userPw" placeholder="Password" type="password" size="50" />
               </div>
               <div class="input string optional">
                 <label class="string optional" for="user-pw-repeat">Repeat password *</label>
-                <input class="string optional" maxlength="255" id="user-pw-repeat" name="userPwConfirm" placeholder="Repeat password" type="text" size="50" />
+                <input class="string optional" maxlength="255" id="user-pw-repeat" name="userPwConfirm" placeholder="Repeat password" type="password" size="50" />
               </div>
             </div>
             <div class="simform__actions">
@@ -123,7 +123,7 @@
           <span class="logmod__heading-subtitle">Enter your email and password <strong>to sign in</strong></span>
         </div> 
         <div class="logmod__form">
-          <form action="/login" method="post" accept-charset="utf-8" action="#" class="simform" id="formLogin" onSubmit="return verifyLogin()">
+          <form method="post" accept-charset="utf-8" action="/login" class="simform" id="formLogin" onSubmit="return verifyLogin()">
             <div class="sminputs">
               <div class="input full">
                 <label class="string optional" for="user-name">Email*</label>

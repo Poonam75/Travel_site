@@ -8,6 +8,7 @@ var hbs = require('hbs');
 var mongoose = require('mongoose');
 
 var app = express();
+app.use(cookieParser());
 
 app.set('views',path.join(__dirname,'views'));
 app.set('view engine','html');
@@ -30,8 +31,22 @@ mongoose.connection.on('error',function(){
 var userController = require('./controllers/users');
 
 //get operations
-app.get('/',function(req,res){
-	res.render('GOexplorAr');
+app.get('/',function(req,res){// loads the main-page i.e. 1st page
+	//res.render('GOexplorAr');
+	var useAcc = null, linkes = null;
+	if(req.cookies.user == undefined){
+		useAcc = "Login";
+		linkes = "/login";
+	}else{
+		useAcc = req.cookies.user;
+		linkes = req.cookies.page;
+	}
+    res.render('GOexplorAr',{
+                    userAcc : useAcc,
+                    links : '/logout'
+                    });
+	console.log("Cookies:",req.cookies.user);
+	console.log("Cookies pass:",req.cookies.pass);
 });
 
 app.get('/login',function(req,res){
@@ -166,10 +181,28 @@ app.get('/a_others',function(req,res){
 app.get('/karts',function(req,res){
 	res.render('karts');
 });
+
 app.get('/beachsports',function(req,res){
 	res.render('beachsports');
 });
 
+app.get('/reis',function(req,res){
+	res.render('reis');
+});
+
+app.get('/logout',function(req,res){
+    res.clearCookie('user');
+    res.clearCookie('pass');
+    res.clearCookie('page');
+	res.render('GOexplorAr',{
+                    userAcc : "Login",
+                    links : '/login'
+                    });
+});
+
+app.post('/login',function(req,res){
+   res.redirect('/'); 
+});
 
 //post operations
 app.post('/signup',userController.postNewUser);// for signup action
